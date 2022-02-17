@@ -1,0 +1,26 @@
+name: release
+
+on:
+  create:
+    tags:
+      - '*'
+
+jobs:
+  release:
+    if: (github.event_name == 'create' && github.event.ref_type == 'tag')
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Prepare branch name'
+        run: >
+          echo "refName=${GITHUB_REF##*/}" >> $GITHUB_ENV
+
+      - name: 'Checkout relevant branch'
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ env.refName }}
+          fetch-depth: 0
+
+      - name: 'Create release'
+        env:
+          JRELEASER_GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_TOKEN }}
+        run: ./mvnw --no-transfer-progress -Pjreleaser -pl :neo4j-ogm-quarkus-parent jreleaser:full-release

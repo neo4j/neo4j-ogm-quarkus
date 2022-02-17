@@ -1,0 +1,15 @@
+---
+artifact: ${project.groupId}:${project.artifactId}:${project.version}
+name: "Neo4j-OGM"
+metadata:
+  keywords:
+    - "neo4j"
+    - "graph"
+    - "nosql"
+    - "datastore"
+    - "ogm"
+    - "mapping"
+  categories:
+    - "data"
+  config:
+    - "org.neo4j.ogm."
