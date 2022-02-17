@@ -1,4 +1,4 @@
-# Quarkus - Neo4j Ogm
+# Quarkus - Neo4j-OGM
 
 ## Welcome to Quarkiverse!
 
