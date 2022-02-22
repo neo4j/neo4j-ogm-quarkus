@@ -1,1 +1,1 @@
-* xref:index.adoc[Quarkus - Neo4j Ogm]
+* xref:index.adoc[Quarkus - Neo4j-OGM]

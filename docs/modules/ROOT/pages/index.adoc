@@ -1,4 +1,4 @@
-= Quarkus - Neo4j Ogm
+= Quarkus - Neo4j-OGM
 :extension-status: preview
 
 Describe what the extension does here.

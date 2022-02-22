@@ -8,7 +8,7 @@
     <version>1.0.0-SNAPSHOT</version>
   </parent>
   <artifactId>quarkus-neo4j-ogm</artifactId>
-  <name>Quarkus - Neo4j Ogm - Runtime</name>
+  <name>Quarkus - Neo4j-OGM - Runtime</name>
   <dependencies>
     <dependency>
       <groupId>io.quarkus</groupId>

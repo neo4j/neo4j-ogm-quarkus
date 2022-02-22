@@ -23,7 +23,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
-import java.util.HashSet;
+import java.util.Comparator;
+import java.util.TreeSet;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -60,7 +61,7 @@ class Neo4jOgmProcessor {
             Neo4jOgmBuiltTimeProperties buildTimeProperties)
             throws ClassNotFoundException {
 
-        var classes = new HashSet<Class<?>>();
+        var classes = new TreeSet<Class<?>>(Comparator.comparing(Class::getName));
         var ccl = Thread.currentThread().getContextClassLoader();
 
         Predicate<DotName> packageFilter = buildTimeProperties.basePackages
