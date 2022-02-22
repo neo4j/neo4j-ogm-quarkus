@@ -18,20 +18,25 @@
  */
 package io.quarkiverse.neo4j.ogm.deployment;
 
-import java.util.Collection;
-import java.util.Set;
+import org.neo4j.ogm.session.SessionFactory;
 
 import io.quarkus.builder.item.SimpleBuildItem;
+import io.quarkus.runtime.RuntimeValue;
 
-final class AnnotatedClassesBuildItem extends SimpleBuildItem {
+/**
+ * Allows access to the Neo4j-OGM {@link SessionFactory} instance from within other extensions.
+ *
+ * @author Michael J. Simons
+ */
+public final class Neo4jOgmSessionFactoryBuildItem extends SimpleBuildItem {
 
-    private final Set<Class<?>> classes;
+    private final RuntimeValue<SessionFactory> value;
 
-    AnnotatedClassesBuildItem(Set<Class<?>> classes) {
-        this.classes = classes;
+    public Neo4jOgmSessionFactoryBuildItem(RuntimeValue<SessionFactory> value) {
+        this.value = value;
     }
 
-    Collection<Class<?>> getEntityClasses() {
-        return this.classes;
+    public RuntimeValue<SessionFactory> getValue() {
+        return value;
     }
 }
