@@ -9,6 +9,7 @@
   </parent>
   <groupId>io.quarkiverse.neo4j</groupId>
   <artifactId>quarkus-neo4j-ogm-parent</artifactId>
+  <description>Use Neo4j-OGM for mapping your graph to your domain and vice versa</description>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Quarkus - Neo4j Ogm - Parent</name>
