@@ -1,5 +1,0 @@
-name: quarkus-neo4j-ogm
-title: Quarkus - Neo4j-OGM
-version: dev
-nav:
-  - modules/ROOT/nav.adoc
