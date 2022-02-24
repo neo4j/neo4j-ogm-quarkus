@@ -133,3 +133,15 @@ The database that should be used (Neo4j EE 4.0{plus} only). Leave empty for usin
 
 [.configuration-legend]
 icon:lock[title=Fixed at build time] Configuration property fixed at build time - All other configuration properties are overridable at runtime
+
+== Dependencies
+
+The `integration-tests` module is a good candidate for showing how the dependencies flow in the Neo4j-Quarkus ecosystem:
+
+image::docs/img/dependencies.png[]
+
+`quarkus-neo4j` - the official Quarkiverse extension - sits in the middle. It provides the `neo4j-java-driver`, the essential connectivity.
+Depending on it are `neo4j-ogm-quarkus` (this project) and inside the integration tests, `neo4j-migration-quarkus` which runs the Cypher-scripts
+with our test data for us.
+`neo4j-ogm-quarkus` brings the necessary dependencies for Neo4j-OGM itself, and of course, contains all the Quarkus "magic" to make things work
+nicely together.
