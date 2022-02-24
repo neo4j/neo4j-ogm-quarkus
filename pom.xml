@@ -431,6 +431,7 @@
 					<releaseProfiles>release</releaseProfiles>
 					<tagNameFormat>@{project.version}</tagNameFormat>
 					<goals>deploy</goals>
+					<arguments>-Drelease -DisDryRun=${dryRun}</arguments>
 					<preparationGoals>clean exec:exec@prepare-release verify</preparationGoals>
 					<pushChanges>false</pushChanges>
 					<localCheckout>true</localCheckout>
