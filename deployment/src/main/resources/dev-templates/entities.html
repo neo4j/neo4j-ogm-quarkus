@@ -2,7 +2,7 @@
 {#title}Available domain classes{/title}
 {#body}
 
-{#if info:domainclasses.empty}
+{#if info:entities.empty}
 <div class="alert alert-primary alert-dismissible fade show" role="alert" data-timer="30000">
     No domain classes found.
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -18,7 +18,7 @@
         </tr>
     </thead>
     <tbody>
-        {#for clazz in info:domainclasses}
+        {#for clazz in info:entities}
         <tr>
             <td>{clazz.packageName}</td>
             <td>{clazz.simpleName}</td>

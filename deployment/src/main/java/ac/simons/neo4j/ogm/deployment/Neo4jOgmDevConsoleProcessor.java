@@ -33,21 +33,21 @@ public class Neo4jOgmDevConsoleProcessor {
 	/**
 	 * Records the list of domain classes into the info space.
 	 *
-	 * @param annotatedClassesBuildItem The build item containing the annotated OGM classes
-	 * @param curateOutcomeBuildItem    The curated build item producer
-	 * @param recorder                  Recorder for the supplier
+	 * @param entitiesBuildItem      The build item containing the annotated OGM classes
+	 * @param curateOutcomeBuildItem The curated build item producer
+	 * @param recorder               Recorder for the supplier
 	 * @return A new template item
 	 */
 	@BuildStep(onlyIf = IsDevelopment.class)
 	@Record(ExecutionTime.RUNTIME_INIT)
 	@SuppressWarnings("unused")
 	DevConsoleRuntimeTemplateInfoBuildItem addAnnotatedClasses(
-		AnnotatedClassesBuildItem annotatedClassesBuildItem,
+		EntitiesBuildItem entitiesBuildItem,
 		CurateOutcomeBuildItem curateOutcomeBuildItem,
 		Neo4jOgmDevConsoleRecorder recorder) {
 
-		var supplier = recorder.recordAnnotatedClasses(new ArrayList<>(annotatedClassesBuildItem.getEntityClasses()));
-		return new DevConsoleRuntimeTemplateInfoBuildItem("domainclasses",
+		var supplier = recorder.recordEntities(new ArrayList<>(entitiesBuildItem.getValue()));
+		return new DevConsoleRuntimeTemplateInfoBuildItem("entities",
 			supplier, this.getClass(),
 			curateOutcomeBuildItem);
 	}

@@ -36,7 +36,7 @@ public class Neo4jOgmDevModeIT {
 			.addClass(SomeClass.class)
 			.addClass(SomeOtherClass.class)
 		);
-	private static final String DEV_TOOLS_ENDPOINT = "/q/dev/eu.michael-simons.neo4j.neo4j-ogm-quarkus/domainclasses";
+	private static final String DEV_TOOLS_ENDPOINT = "/q/dev/eu.michael-simons.neo4j.neo4j-ogm-quarkus/entities";
 
 	@Test
 	public void listOfDomainClassesShouldBeAvailable() {

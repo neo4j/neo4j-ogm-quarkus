@@ -36,11 +36,14 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.TreeSet;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.jboss.jandex.ClassInfo;
 import org.jboss.jandex.DotName;
 import org.neo4j.ogm.session.SessionFactory;
 
@@ -58,8 +61,7 @@ public class Neo4jOgmProcessor {
 	}
 
 	@BuildStep
-	@SuppressWarnings("unused")
-	AnnotatedClassesBuildItem findAnnotatedClasses(CombinedIndexBuildItem combinedIndexBuildItem,
+	EntitiesBuildItem findAnnotatedClasses(CombinedIndexBuildItem indexBuildItem,
 		Neo4jOgmBuiltTimeProperties buildTimeProperties)
 		throws ClassNotFoundException {
 
@@ -70,31 +72,33 @@ public class Neo4jOgmProcessor {
 			.map(packages -> (Predicate<DotName>) (DotName n) -> packages.contains(n.packagePrefix()))
 			.orElseGet(() -> (DotName n) -> true);
 
+		var index = indexBuildItem.getIndex();
+
 		var nodeEntity = DotName.createSimple("org.neo4j.ogm.annotation.NodeEntity");
-		for (var annotation : combinedIndexBuildItem.getIndex().getAnnotations(nodeEntity)) {
-			var classInfo = annotation.target().asClass();
-			if (packageFilter.test(classInfo.name())) {
-				classes.add(ccl.loadClass(classInfo.name().toString()));
-			}
-		}
+		classes.addAll(load(packageFilter, ccl, index.getAnnotations(nodeEntity).stream().map(ai -> ai.target().asClass()).collect(Collectors.toList())));
 
 		var relationshipEntity = DotName.createSimple("org.neo4j.ogm.annotation.RelationshipEntity");
-		for (var annotation : combinedIndexBuildItem.getIndex().getAnnotations(relationshipEntity)) {
-			var classInfo = annotation.target().asClass();
-			if (packageFilter.test(classInfo.name())) {
-				classes.add(ccl.loadClass(classInfo.name().toString()));
+		classes.addAll(load(packageFilter, ccl, index.getAnnotations(relationshipEntity).stream().map(ai -> ai.target().asClass()).collect(Collectors.toList())));
+
+		return new EntitiesBuildItem(classes);
+	}
+
+	private Collection<Class<?>> load(Predicate<DotName> filter, ClassLoader classLoader, Collection<ClassInfo> candidates)
+		throws ClassNotFoundException {
+
+		var result  = new ArrayList<Class<?>>(candidates.size());
+		for (var classInfo : candidates) {
+			if (filter.test(classInfo.name())) {
+				result.add(classLoader.loadClass(classInfo.name().toString()));
 			}
 		}
-
-		return new AnnotatedClassesBuildItem(classes);
+		return result;
 	}
 
 	@BuildStep
-	ReflectiveClassBuildItem registerAnnotatedClassesForReflection(
-		AnnotatedClassesBuildItem annotatedClassesBuildItem) {
+	ReflectiveClassBuildItem registerAnnotatedClassesForReflection(EntitiesBuildItem entitiesBuildItem) {
 
-		return new ReflectiveClassBuildItem(true, true, true,
-			annotatedClassesBuildItem.getEntityClasses().toArray(new Class<?>[0]));
+		return new ReflectiveClassBuildItem(true, true, true, entitiesBuildItem.getValue().toArray(new Class<?>[0]));
 	}
 
 	@BuildStep
@@ -105,10 +109,10 @@ public class Neo4jOgmProcessor {
 	}
 
 	@BuildStep
-	void createOGMIndex(AnnotatedClassesBuildItem annotatedClassesBuildItem,
+	void createOGMIndex(EntitiesBuildItem entitiesBuildItem,
 		BuildProducer<GeneratedResourceBuildItem> resourceProducer) {
 
-		annotatedClassesBuildItem.getEntityClasses().stream()
+		entitiesBuildItem.getValue().stream()
 			.collect(Collectors.groupingBy(Class::getPackageName))
 			.forEach((p, cl) -> {
 				try (var os = new ByteArrayOutputStream()) {
@@ -119,10 +123,7 @@ public class Neo4jOgmProcessor {
 						}
 						w.flush();
 					}
-					resourceProducer.produce(
-						new GeneratedResourceBuildItem(
-							"META-INF/resources/" + p.replace(".", "/") + "/neo4j-ogm.index",
-							os.toByteArray()));
+					resourceProducer.produce(new GeneratedResourceBuildItem(packageAsIndexEntry(p), os.toByteArray()));
 
 				} catch (IOException e) {
 					throw new UncheckedIOException(e);
@@ -131,16 +132,20 @@ public class Neo4jOgmProcessor {
 	}
 
 	@BuildStep
-	NativeImageResourceBuildItem addIndizesToNativeImage(AnnotatedClassesBuildItem annotatedClassesBuildItem) {
+	NativeImageResourceBuildItem addIndizesToNativeImage(EntitiesBuildItem entitiesBuildItem) {
 
-		var allGeneratedResources = annotatedClassesBuildItem.getEntityClasses()
+		var allGeneratedResources = entitiesBuildItem.getValue()
 			.stream()
 			.map(Class::getPackageName)
 			.distinct()
-			.map(p -> "META-INF/resources/" + p.replace(".", "/") + "/neo4j-ogm.index")
+			.map(Neo4jOgmProcessor::packageAsIndexEntry)
 			.collect(Collectors.toList());
 
 		return new NativeImageResourceBuildItem(allGeneratedResources);
+	}
+
+	static String packageAsIndexEntry(String p) {
+		return "META-INF/resources/" + p.replace(".", "/") + "/neo4j-ogm.index";
 	}
 
 	@BuildStep
@@ -150,9 +155,9 @@ public class Neo4jOgmProcessor {
 		ShutdownContextBuildItem shutdownContext,
 		BuildProducer<SyntheticBeanBuildItem> syntheticBeans,
 		Neo4jOgmProperties ogmProperties,
-		AnnotatedClassesBuildItem allClasses) {
+		EntitiesBuildItem allClasses) {
 
-		var allPackages = allClasses.getEntityClasses().stream().map(Class::getPackageName)
+		var allPackages = allClasses.getValue().stream().map(Class::getPackageName)
 			.distinct().toArray(String[]::new);
 		var sessionFactoryRuntimeValue = recorder
 			.initializeSessionFactory(driverBuildItem.getValue(), shutdownContext, ogmProperties, allPackages);

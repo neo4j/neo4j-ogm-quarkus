@@ -13,22 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ac.simons.neo4j.ogm.deployment;
-
-import io.quarkus.builder.item.SimpleBuildItem;
+package ac.simons.neo4j.ogm.runtime;
 
 import java.util.Collection;
-import java.util.Set;
+import java.util.function.Supplier;
 
-final class AnnotatedClassesBuildItem extends SimpleBuildItem {
+/**
+ * @author Michael J. Simons
+ */
+class EntitiesSupplier implements Supplier<Collection<Class<?>>> {
 
-	private final Set<Class<?>> classes;
+	private Collection<Class<?>> value;
 
-	AnnotatedClassesBuildItem(Set<Class<?>> classes) {
-		this.classes = classes;
+	void setValue(Collection<Class<?>> value) {
+		this.value = value;
 	}
 
-	Collection<Class<?>> getEntityClasses() {
-		return this.classes;
+	@Override
+	public Collection<Class<?>> get() {
+		return this.value;
 	}
 }

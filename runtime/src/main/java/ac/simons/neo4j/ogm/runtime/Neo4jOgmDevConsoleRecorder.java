@@ -29,14 +29,13 @@ public class Neo4jOgmDevConsoleRecorder {
 	/**
 	 * Creates a supplier for a list of classes
 	 *
-	 * @param annotatedClasses The list of classes to be supplied
+	 * @param entities The list of classes to be supplied
 	 * @return A recordable supplier
 	 */
-	public Supplier<Collection<Class<?>>> recordAnnotatedClasses(
-		Collection<Class<?>> annotatedClasses) {
+	public Supplier<Collection<Class<?>>> recordEntities(Collection<Class<?>> entities) {
 
-		var supplier = new AnnotatedClassesSupplier();
-		supplier.setValue(annotatedClasses);
+		var supplier = new EntitiesSupplier();
+		supplier.setValue(entities);
 		return supplier;
 	}
 }
