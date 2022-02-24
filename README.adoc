@@ -52,6 +52,8 @@ public class MovieRepository {
 In addition, it will take care that all classes annotated with `@NodeEntity` and `@RelationshipEntity` are discovered by
 Quarkus in both JVM and native mode.
 
+NOTE: Please note that this extension only supports connections via the Bolt-protocol.
+
 == Downloads
 
 Maven artifacts are available on https://search.maven.org/artifact/eu.michael-simons.neo4j/neo4j-ogm-quarkus[central] under
@@ -94,7 +96,7 @@ h|Configuration property
 h|Type
 h|Default
 
-a|icon:lock[title=Fixed at build time] `org.neo4j.ogm.base-packages`
+a|🔒 `org.neo4j.ogm.base-packages`
 
 [.description]
 --
@@ -132,7 +134,7 @@ The database that should be used (Neo4j EE 4.0{plus} only). Leave empty for usin
 |===
 
 [.configuration-legend]
-icon:lock[title=Fixed at build time] Configuration property fixed at build time - All other configuration properties are overridable at runtime
+🔒 Configuration property fixed at build time - All other configuration properties are overridable at runtime
 
 == Dependencies
 
