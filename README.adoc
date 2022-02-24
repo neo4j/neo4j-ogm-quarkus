@@ -5,7 +5,7 @@ Michael Simons <michael.simons@neo4j.com>
 :listing-caption: Listing
 :source-highlighter: coderay
 :icons: font
-:latest_version: 1.0.0-SNAPSHOT
+:latest_version: 1.0.0
 :groupId: eu.michael-simons.neo4j
 :artifactId: neo4j-ogm-quarkus
 :branch: main
