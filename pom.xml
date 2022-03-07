@@ -83,7 +83,7 @@
 		<nexus-staging-maven-plugin.version>1.6.12</nexus-staging-maven-plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<quarkus-neo4j.version>1.0.4</quarkus-neo4j.version>
-		<quarkus.version>2.7.2.Final</quarkus.version>
+		<quarkus.version>2.7.3.Final</quarkus.version>
 		<sortpom-maven-plugin.version>3.0.1</sortpom-maven-plugin.version>
 	</properties>
 
