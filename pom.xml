@@ -499,9 +499,7 @@
 											<format>- {{commitShortHash}} {{commitTitle}}</format>
 											<preset>conventional-commits</preset>
 											<contributors>
-												<format>-
-													{{^contributorUsername}}{{contributorName}}{{/contributorUsername}}{{#contributorUsername}}@{{contributorUsername}}{{/contributorUsername}}
-												</format>
+												<format>- {{^contributorUsername}}{{contributorName}}{{/contributorUsername}}{{#contributorUsername}}@{{contributorUsername}}{{/contributorUsername}}</format>
 											</contributors>
 											<labelers>
 												<labeler>
