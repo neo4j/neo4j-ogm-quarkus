@@ -15,14 +15,14 @@
  */
 package ac.simons.neo4j.ogm.it;
 
-import io.quarkus.test.junit.NativeImageTest;
+import io.quarkus.test.junit.QuarkusIntegrationTest;
 
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 
 /**
  * @author Michael J. Simons
  */
-@NativeImageTest
+@QuarkusIntegrationTest
 @EnabledIfSystemProperty(named = "native", matches = "true")
 public class NativeNeo4jOgmResourceIT extends Neo4jOgmResourcesIT {
 }
