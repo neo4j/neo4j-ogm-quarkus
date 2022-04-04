@@ -18,6 +18,14 @@
 		<dependency>
 			<groupId>eu.michael-simons.neo4j</groupId>
 			<artifactId>neo4j-migrations-quarkus</artifactId>
+			<exclusions>
+				<exclusion>
+					<!-- Usually it will be the same like OGM uses, but it might be due to release schedules that is is not the case.
+					  AS OGM uses it more, we rely on the one by OGM and don't pin a specific version.-->
+					<groupId>io.github.classgraph</groupId>
+					<artifactId>classgraph</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>eu.michael-simons.neo4j</groupId>
