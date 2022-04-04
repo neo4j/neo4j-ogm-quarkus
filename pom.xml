@@ -4,7 +4,7 @@
 
 	<groupId>eu.michael-simons.neo4j</groupId>
 	<artifactId>neo4j-ogm-quarkus-parent</artifactId>
-	<version>1.0.3-SNAPSHOT</version>
+	<version>1.1.0</version>
 	<packaging>pom</packaging>
 
 	<name>Neo4j-OGM (Quarkus Parent)</name>
@@ -46,7 +46,7 @@
 	<scm>
 		<connection>scm:git:git@github.com:michael-simons/neo4j-ogm-quarkus.git</connection>
 		<developerConnection>scm:git:git@github.com:michael-simons/neo4j-ogm-quarkus.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>1.1.0</tag>
 		<url>https://github.com/michael-simons/neo4j-ogm-quarkus</url>
 	</scm>
 
