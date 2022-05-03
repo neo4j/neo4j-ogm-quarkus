@@ -74,7 +74,7 @@
 							<name>${neo4j.image}</name>
 							<run>
 								<ports>
-									<port>it-database-port:7687</port>
+									<port>+neo4j-ip:neo4j-port:7687</port>
 								</ports>
 								<env>
 									<NEO4J_AUTH>neo4j/${neo4j.password}</NEO4J_AUTH>
@@ -117,7 +117,7 @@
 					<environmentVariables>
 						<QUARKUS_NEO4J_AUTHENTICATION_USERNAME>${neo4j.username}</QUARKUS_NEO4J_AUTHENTICATION_USERNAME>
 						<QUARKUS_NEO4J_AUTHENTICATION_PASSWORD>${neo4j.password}</QUARKUS_NEO4J_AUTHENTICATION_PASSWORD>
-						<QUARKUS_NEO4J_URI>bolt://localhost:${it-database-port}</QUARKUS_NEO4J_URI>
+						<QUARKUS_NEO4J_URI>bolt://${neo4j-ip}:${neo4j-port}</QUARKUS_NEO4J_URI>
 					</environmentVariables>
 				</configuration>
 			</plugin>
