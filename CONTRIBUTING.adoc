@@ -41,6 +41,7 @@ $ ./mvnw -Dfast package
 === Releasing (Only relevant for the current maintainers)
 
 Releases will be created via standard Maven `release:prepare` / `release:perform` cycle.
+Tests might be skipped during the release steps with `-DskipTestsDuringRelease`.
 
 [source,bash]
 ----
