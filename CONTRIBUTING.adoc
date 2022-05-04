@@ -41,7 +41,39 @@ $ ./mvnw -Dfast package
 === Releasing (Only relevant for the current maintainers)
 
 Releases will be created via standard Maven `release:prepare` / `release:perform` cycle.
-Tests might be skipped during the release steps with `-DskipTestsDuringRelease`.
+Tests might be skipped during the release steps with `-DskipTestsDuringRelease` and `-DskipSigning`.
+
+==== Without Nexus staging plugin (and using Neo4j infrastructure)
+
+[source,bash]
+----
+./mvnw -DskipTestsDuringRelease release:prepare
+./mvnw -DskipTestsDuringRelease -DskipSigning -DstagingRepository=releases::file:///`pwd`/target/artifacts release:stage
+----
+
+After that, Neo4j infrastructure must be applied accordingly.
+
+==== With the Nexus staging plugin
+
+In case there is direct access to the GPG signing key and also to the OSS Sonatype, the Nexus staging plugin can be
+added back to the parent pom:
+
+[source,xml]
+----
+<plugin>
+    <groupId>org.sonatype.plugins</groupId>
+    <artifactId>nexus-staging-maven-plugin</artifactId>
+    <version>${nexus-staging-maven-plugin.version}</version>
+    <extensions>true</extensions>
+    <configuration>
+        <serverId>ossrh</serverId>
+        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+        <autoReleaseAfterClose>true</autoReleaseAfterClose>
+    </configuration>
+</plugin>
+----
+
+With that in place, releasing can be done with:
 
 [source,bash]
 ----

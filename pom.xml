@@ -369,17 +369,6 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.sonatype.plugins</groupId>
-				<artifactId>nexus-staging-maven-plugin</artifactId>
-				<version>${nexus-staging-maven-plugin.version}</version>
-				<extensions>true</extensions>
-				<configuration>
-					<serverId>ossrh</serverId>
-					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
-					<autoReleaseAfterClose>true</autoReleaseAfterClose>
-				</configuration>
-			</plugin>
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
 				<version>${maven-source-plugin.version}</version>
@@ -430,7 +419,7 @@
 					<releaseProfiles>release</releaseProfiles>
 					<tagNameFormat>@{project.version}</tagNameFormat>
 					<goals>deploy</goals>
-					<arguments>-Drelease -DskipTests=${skipTestsDuringRelease} -DisDryRun=${dryRun}</arguments>
+					<arguments>-Drelease -Dgpg.skip=${skipSigning} -DskipTests=${skipTestsDuringRelease} -DisDryRun=${dryRun}</arguments>
 					<preparationGoals>clean exec:exec@prepare-release verify</preparationGoals>
 					<pushChanges>false</pushChanges>
 					<localCheckout>true</localCheckout>
