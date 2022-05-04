@@ -4,7 +4,7 @@
 
 	<groupId>eu.michael-simons.neo4j</groupId>
 	<artifactId>neo4j-ogm-quarkus-parent</artifactId>
-	<version>1.1.1-SNAPSHOT</version>
+	<version>1.1.1</version>
 	<packaging>pom</packaging>
 
 	<name>Neo4j-OGM (Quarkus Parent)</name>
@@ -46,7 +46,7 @@
 	<scm>
 		<connection>scm:git:git@github.com:michael-simons/neo4j-ogm-quarkus.git</connection>
 		<developerConnection>scm:git:git@github.com:michael-simons/neo4j-ogm-quarkus.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>1.1.1</tag>
 		<url>https://github.com/michael-simons/neo4j-ogm-quarkus</url>
 	</scm>
 
@@ -55,7 +55,7 @@
 		<checkstyle.version>10.2</checkstyle.version>
 		<docker-maven-plugin.version>0.39.1</docker-maven-plugin.version>
 		<exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
-		<java-module-name />
+		<java-module-name/>
 		<java.version>11</java.version>
 		<junit.jupiter.version>5.8.2</junit.jupiter.version>
 		<maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
@@ -304,7 +304,7 @@
 								<requireJavaVersion>
 									<version>11</version>
 								</requireJavaVersion>
-								<DependencyConvergence />
+								<DependencyConvergence/>
 								<requireMavenVersion>
 									<version>${maven.version}</version>
 								</requireMavenVersion>
