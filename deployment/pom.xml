@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>eu.michael-simons.neo4j</groupId>
+		<groupId>org.neo4j</groupId>
 		<artifactId>neo4j-ogm-quarkus-parent</artifactId>
 		<version>1.1.1-SNAPSHOT</version>
 	</parent>
@@ -10,14 +10,9 @@
 	<name>Neo4j-OGM (Quarkus Deployment)</name>
 	<description>Deployment steps for the Quarkus integration of Neo4j-OGM.</description>
 	<properties>
-		<java-module-name>ac.simons.neo4j.ogm.quarkus.deployment</java-module-name>
+		<java-module-name>org.neo4j.ogm.quarkus.quarkus.deployment</java-module-name>
 	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>eu.michael-simons.neo4j</groupId>
-			<artifactId>neo4j-ogm-quarkus</artifactId>
-			<version>${project.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>io.quarkiverse.neo4j</groupId>
 			<artifactId>quarkus-neo4j-deployment</artifactId>
@@ -25,6 +20,11 @@
 		<dependency>
 			<groupId>io.quarkus</groupId>
 			<artifactId>quarkus-arc-deployment</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.neo4j</groupId>
+			<artifactId>neo4j-ogm-quarkus</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.quarkus</groupId>

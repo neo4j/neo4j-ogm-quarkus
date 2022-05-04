@@ -6,7 +6,7 @@ Michael Simons <michael.simons@neo4j.com>
 :source-highlighter: coderay
 :icons: font
 :latest_version: 1.1.0
-:groupId: eu.michael-simons.neo4j
+:groupId: org.neo4j
 :artifactId: neo4j-ogm-quarkus
 :branch: main
 
@@ -18,7 +18,7 @@ the low-level connectivity provided by the Quarkus Neo4j extension.
 --
 
 image:https://github.com/michael-simons/neo4j-ogm-quarkus/workflows/build/badge.svg[link=https://github.com/michael-simons/neo4j-ogm-quarkus/actions]
-image:https://maven-badges.herokuapp.com/maven-central/eu.michael-simons.neo4j/neo4j-ogm-quarkus/badge.svg[link=https://maven-badges.herokuapp.com/maven-central/eu.michael-simons.neo4j/neo4j-ogm-quarkus]
+image:https://maven-badges.herokuapp.com/maven-central/org.neo4j/neo4j-ogm-quarkus/badge.svg[link=https://maven-badges.herokuapp.com/maven-central/org.neo4j/neo4j-ogm-quarkus]
 
 == Introduction
 
@@ -56,7 +56,7 @@ NOTE: Please note that this extension only supports connections via the Bolt-pro
 
 == Downloads
 
-Maven artifacts are available on https://search.maven.org/artifact/eu.michael-simons.neo4j/neo4j-ogm-quarkus[central] under
+Maven artifacts are available on https://search.maven.org/artifact/org.neo4j/neo4j-ogm-quarkus[central] under
 the following coordinates: `{groupId}:{artifactId}:{latest_version}`.
 
 NOTE: There is no need to declare any other dependency (for Neo4j-OGM or Quarkus-Neo4j, this extension here brings both of them).

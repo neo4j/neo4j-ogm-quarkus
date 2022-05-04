@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>eu.michael-simons.neo4j</groupId>
+		<groupId>org.neo4j</groupId>
 		<artifactId>neo4j-ogm-quarkus-parent</artifactId>
 		<version>1.1.1-SNAPSHOT</version>
 	</parent>
@@ -10,7 +10,7 @@
 	<name>Neo4j-OGM (Quarkus)</name>
 	<description>Use Neo4j-OGM for mapping your graph to your domain and vice versa</description>
 	<properties>
-		<java-module-name>ac.simons.neo4j.ogm.quarkus.runtime</java-module-name>
+		<java-module-name>org.neo4j.ogm.quarkus.quarkus.runtime</java-module-name>
 	</properties>
 	<dependencies>
 		<dependency>

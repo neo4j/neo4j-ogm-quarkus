@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>eu.michael-simons.neo4j</groupId>
+		<groupId>org.neo4j</groupId>
 		<artifactId>neo4j-ogm-quarkus-parent</artifactId>
 		<version>1.1.1-SNAPSHOT</version>
 	</parent>
@@ -10,7 +10,7 @@
 	<name>Neo4j-OGM (Quarkus Integration Tests)</name>
 	<description>Integration tests for the Quarkus integration of Neo4j-OGM.</description>
 	<properties>
-		<java-module-name>ac.simons.neo4j.ogm.quarkus.tests</java-module-name>
+		<java-module-name>org.neo4j.ogm.quarkus.quarkus.tests</java-module-name>
 		<neo4j.password>secret</neo4j.password>
 		<neo4j.username>neo4j</neo4j.username>
 	</properties>
@@ -28,17 +28,17 @@
 			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>eu.michael-simons.neo4j</groupId>
-			<artifactId>neo4j-ogm-quarkus</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>io.quarkus</groupId>
 			<artifactId>quarkus-resteasy</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>io.quarkus</groupId>
 			<artifactId>quarkus-resteasy-jsonb</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.neo4j</groupId>
+			<artifactId>neo4j-ogm-quarkus</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.quarkus</groupId>
