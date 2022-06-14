@@ -118,7 +118,7 @@ a| `org.neo4j.ogm.use-strict-querying`
 
 [.description]
 --
-This flag instructs OGM to use all static labels when querying domain objects.
+This flag instructs OGM to use all static labels when querying domain objects. Test
 --|boolean
 |`false`
 
