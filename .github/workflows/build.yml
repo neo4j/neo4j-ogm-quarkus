@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: graalvm/setup-graalvm@v1
-      - uses: irene221b/secret-action@v1
+      - uses: irene221b/secret-action@v2
         with:
           version: '21.3.0'
           java-version: '11'
