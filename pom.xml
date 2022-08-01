@@ -52,7 +52,7 @@
 
 	<properties>
 		<checkstyle.version>10.3.1</checkstyle.version>
-		<docker-maven-plugin.version>0.40.1</docker-maven-plugin.version>
+		<docker-maven-plugin.version>0.40.2</docker-maven-plugin.version>
 		<exec-maven-plugin.version>3.1.0</exec-maven-plugin.version>
 		<java-module-name />
 		<java.version>11</java.version>
