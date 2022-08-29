@@ -81,7 +81,7 @@
 		<neo4j.image>neo4j:4.4</neo4j.image>
 		<nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<quarkus-neo4j.version>1.4.0</quarkus-neo4j.version>
+		<quarkus-neo4j.version>1.4.1</quarkus-neo4j.version>
 		<quarkus.version>2.11.2.Final</quarkus.version>
 		<sortpom-maven-plugin.version>3.2.0</sortpom-maven-plugin.version>
 	</properties>
