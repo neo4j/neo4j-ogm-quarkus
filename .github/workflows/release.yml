@@ -15,7 +15,7 @@ jobs:
           echo "refName=${GITHUB_REF##*/}" >> $GITHUB_ENV
 
       - name: 'Checkout relevant branch'
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ env.refName }}
           fetch-depth: 0
