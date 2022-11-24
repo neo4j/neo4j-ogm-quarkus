@@ -46,11 +46,21 @@ public class Neo4jOgmResourcesIT {
 			.extract().response();
 
 		var json = response.jsonPath();
-
 		assertEquals(NUMBER_OF_INITIAL_MOVIES, json.<List<?>>getJsonObject("$").size());
-
 		var allTitles = json.<List<String>>getJsonObject("title");
 		assertTrue(allTitles.contains("Cloud Atlas"));
+	}
+
+	@Test
+	public void getMovieWithANativeTypeShouldWork() {
+		var response = RestAssured.given()
+			.when().get("/api/movies/The Matrix")
+			.then()
+			.statusCode(200)
+			.extract().response();
+
+		var json = response.jsonPath();
+		assertNotNull(json.get("watchedOn"));
 	}
 
 	@Test

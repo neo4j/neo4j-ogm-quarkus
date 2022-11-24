@@ -16,6 +16,7 @@
 package org.neo4j.ogm.quarkus.it.movies;
 
 import java.util.Collection;
+import java.util.Map;
 
 import javax.enterprise.context.ApplicationScoped;
 
@@ -36,5 +37,10 @@ class MovieRepository {
 	Collection<Movie> findAll() {
 
 		return sessionFactory.openSession().loadAll(Movie.class);
+	}
+
+	Movie findByTitle(String title) {
+
+		return sessionFactory.openSession().queryForObject(Movie.class, "MATCH (m:Movie) WHERE m.title = $title RETURN m", Map.of("title", title));
 	}
 }

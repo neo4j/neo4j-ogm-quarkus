@@ -15,6 +15,7 @@
  */
 package org.neo4j.ogm.quarkus.it.movies;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -41,6 +42,8 @@ public final class Movie {
 
 	@Relationship(value = "DIRECTED", direction = Relationship.INCOMING)
 	private List<Person> directors = new ArrayList<>();
+
+	private LocalDate watchedOn;
 
 	/**
 	 * A new movie
@@ -121,5 +124,13 @@ public final class Movie {
 	public Movie addDirectors(Collection<Person> newDirectors) {
 		this.directors.addAll(newDirectors);
 		return this;
+	}
+
+	public LocalDate getWatchedOn() {
+		return watchedOn;
+	}
+
+	public void setWatchedOn(LocalDate watchedOn) {
+		this.watchedOn = watchedOn;
 	}
 }
