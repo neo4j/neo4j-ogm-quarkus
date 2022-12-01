@@ -37,10 +37,10 @@ public final class Movie {
 	@Property("tagline")
 	private String description;
 
-	@Relationship(value = "ACTED_IN", direction = Relationship.INCOMING)
+	@Relationship(value = "ACTED_IN", direction = Relationship.Direction.INCOMING)
 	private List<Actor> actors = new ArrayList<>();
 
-	@Relationship(value = "DIRECTED", direction = Relationship.INCOMING)
+	@Relationship(value = "DIRECTED", direction = Relationship.Direction.INCOMING)
 	private List<Person> directors = new ArrayList<>();
 
 	private LocalDate watchedOn;
