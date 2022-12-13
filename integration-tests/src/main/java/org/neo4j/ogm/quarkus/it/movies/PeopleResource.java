@@ -15,9 +15,13 @@
  */
 package org.neo4j.ogm.quarkus.it.movies;
 
+import java.util.Collection;
+
 import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -50,5 +54,13 @@ public class PeopleResource {
 
 		var savedPerson = peopleRepository.save(newPerson);
 		return Response.status(Response.Status.CREATED).entity(savedPerson).build();
+	}
+
+	@GET
+	@Path("/{name}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<ActorRecommendation> getRecommendations(@PathParam("name") String name) {
+
+		return peopleRepository.recommendCoActor(name);
 	}
 }

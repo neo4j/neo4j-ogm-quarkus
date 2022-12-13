@@ -15,8 +15,12 @@
  */
 package org.neo4j.ogm.quarkus.it.movies;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.enterprise.context.ApplicationScoped;
 
+import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
 
 /**
@@ -36,5 +40,14 @@ class PeopleRepository {
 		var session = sessionFactory.openSession();
 		session.save(person);
 		return person;
+	}
+
+	public List<ActorRecommendation> recommendCoActor(String name) {
+		Session session = sessionFactory.openSession();
+		return session.queryDto("""
+			MATCH (actor:Person {name: $name})-[:ACTED_IN]->(m)<-[:ACTED_IN]-(coActors),
+			      (coActors)-[:ACTED_IN]->(m2)<-[:ACTED_IN]-(cocoActors)
+			WHERE NOT (actor)-[:ACTED_IN]->()<-[:ACTED_IN]-(cocoActors) AND actor <> cocoActors
+			RETURN cocoActors.name AS actor, count(*) AS strength ORDER BY strength DESC""", Map.of("name", name), ActorRecommendation.class);
 	}
 }

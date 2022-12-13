@@ -16,14 +16,17 @@
 package org.neo4j.ogm.quarkus.it;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import io.quarkus.test.junit.QuarkusIntegrationTest;
 import io.restassured.RestAssured;
+import io.restassured.common.mapper.TypeRef;
 import io.restassured.http.ContentType;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
@@ -75,5 +78,20 @@ public class Neo4jOgmResourcesIT {
 
 		var json = response.jsonPath();
 		assertNotNull(json.getObject("id", Long.class));
+	}
+
+	@Test
+	public void dtoMappingShouldWork() {
+
+		var response = RestAssured.given()
+			.when().get("/api/people/Keanu Reeves")
+			.then()
+			.statusCode(200)
+			.extract().response();
+
+		var json = response.jsonPath();
+		var content = json.getObject(".", new TypeRef<List<Map<String, Object>>>() {
+		});
+		assertFalse(content.isEmpty());
 	}
 }

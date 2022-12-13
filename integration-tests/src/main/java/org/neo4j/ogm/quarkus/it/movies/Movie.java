@@ -25,10 +25,13 @@ import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.Relationship;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
 /**
  * @author Michael J. Simons
  */
 @NodeEntity
+@RegisterForReflection
 public final class Movie {
 
 	@Id
