@@ -54,7 +54,7 @@
 		<checkstyle.version>10.8.0</checkstyle.version>
 		<docker-maven-plugin.version>0.42.0</docker-maven-plugin.version>
 		<exec-maven-plugin.version>3.1.0</exec-maven-plugin.version>
-		<java-module-name />
+		<java-module-name/>
 		<java.version>17</java.version>
 		<junit.jupiter.version>5.8.2</junit.jupiter.version>
 		<maven-checkstyle-plugin.version>3.2.1</maven-checkstyle-plugin.version>
@@ -81,7 +81,7 @@
 		<neo4j.image>neo4j:4.4</neo4j.image>
 		<nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<quarkus-neo4j.version>2.2.3</quarkus-neo4j.version>
+		<quarkus-neo4j.version>2.2.4</quarkus-neo4j.version>
 		<quarkus.version>2.16.4.Final</quarkus.version>
 		<sortpom-maven-plugin.version>3.2.1</sortpom-maven-plugin.version>
 	</properties>
@@ -298,7 +298,7 @@
 								<requireJavaVersion>
 									<version>${java.version}</version>
 								</requireJavaVersion>
-								<DependencyConvergence />
+								<DependencyConvergence/>
 								<requireMavenVersion>
 									<version>${maven.version}</version>
 								</requireMavenVersion>
