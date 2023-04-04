@@ -4,7 +4,7 @@
 
 	<groupId>org.neo4j</groupId>
 	<artifactId>neo4j-ogm-quarkus-parent</artifactId>
-	<version>2.2.3-SNAPSHOT</version>
+	<version>2.2.3</version>
 	<packaging>pom</packaging>
 
 	<name>Neo4j-OGM (Quarkus Parent)</name>
@@ -46,7 +46,7 @@
 	<scm>
 		<connection>scm:git:git@github.com:neo4j/neo4j-ogm-quarkus.git</connection>
 		<developerConnection>scm:git:git@github.com:neo4j/neo4j-ogm-quarkus.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>2.2.3</tag>
 		<url>https://github.com/neo4j/neo4j-ogm-quarkus</url>
 	</scm>
 
@@ -54,7 +54,7 @@
 		<checkstyle.version>10.9.3</checkstyle.version>
 		<docker-maven-plugin.version>0.42.0</docker-maven-plugin.version>
 		<exec-maven-plugin.version>3.1.0</exec-maven-plugin.version>
-		<java-module-name />
+		<java-module-name/>
 		<java.version>17</java.version>
 		<junit.jupiter.version>5.8.2</junit.jupiter.version>
 		<maven-checkstyle-plugin.version>3.2.1</maven-checkstyle-plugin.version>
@@ -298,7 +298,7 @@
 								<requireJavaVersion>
 									<version>${java.version}</version>
 								</requireJavaVersion>
-								<DependencyConvergence />
+								<DependencyConvergence/>
 								<requireMavenVersion>
 									<version>${maven.version}</version>
 								</requireMavenVersion>
@@ -537,42 +537,42 @@
 											<categories>
 												<category>
 													<key>features</key>
-													<title>🚀 Features</title>
+													<title>&#x1f680; Features</title>
 													<labels>feat</labels>
 													<order>10</order>
 												</category>
 												<category>
 													<key>fixes</key>
-													<title>🐛 Bug Fixes</title>
+													<title>&#x1f41b; Bug Fixes</title>
 													<labels>fix</labels>
 													<order>20</order>
 												</category>
 												<category>
 													<key>changes</key>
-													<title>🔄️ Refactorings</title>
+													<title>&#x1f504;️ Refactorings</title>
 													<labels>refactor</labels>
 													<order>25</order>
 												</category>
 												<category>
 													<key>docs</key>
-													<title>📝 Documentation</title>
+													<title>&#x1f4dd; Documentation</title>
 													<labels>docs</labels>
 													<order>30</order>
 												</category>
 												<category>
 													<key>tasks</key>
-													<title>🧰 Tasks</title>
+													<title>&#x1f9f0; Tasks</title>
 													<labels>chore</labels>
 													<order>35</order>
 												</category>
 												<category>
-													<title>🧹 Housekeeping</title>
+													<title>&#x1f9f9; Housekeeping</title>
 													<labels>dependabot</labels>
 													<order>70</order>
 												</category>
 												<category>
 													<key>build</key>
-													<title>🛠 Build</title>
+													<title>&#x1f6e0; Build</title>
 													<order>80</order>
 												</category>
 												<category>
