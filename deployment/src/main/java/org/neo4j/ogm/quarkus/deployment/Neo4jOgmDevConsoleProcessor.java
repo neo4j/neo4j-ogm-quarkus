@@ -16,12 +16,15 @@
 package org.neo4j.ogm.quarkus.deployment;
 
 import org.neo4j.ogm.quarkus.runtime.Neo4jOgmDevConsoleRecorder;
+
 import io.quarkus.deployment.IsDevelopment;
 import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.annotations.ExecutionTime;
 import io.quarkus.deployment.annotations.Record;
 import io.quarkus.deployment.pkg.builditem.CurateOutcomeBuildItem;
 import io.quarkus.devconsole.spi.DevConsoleRuntimeTemplateInfoBuildItem;
+import io.quarkus.devui.spi.page.CardPageBuildItem;
+import io.quarkus.devui.spi.page.Page;
 
 import java.util.ArrayList;
 
@@ -50,5 +53,35 @@ public class Neo4jOgmDevConsoleProcessor {
 		return new DevConsoleRuntimeTemplateInfoBuildItem("entities",
 			supplier, this.getClass(),
 			curateOutcomeBuildItem);
+	}
+
+	/**
+	 * A record to serialize the entities for {@link #createOgmCard(EntitiesBuildItem)} properly.
+	 *
+	 * @param packageName The package name of the entity
+	 * @param simpleName  The simple class name under that package
+	 */
+	record EntityDescription(String packageName, String simpleName) {
+	}
+
+	@BuildStep(onlyIf = IsDevelopment.class)
+	@SuppressWarnings("unused")
+	CardPageBuildItem createOgmCard(EntitiesBuildItem entitiesBuildItem) {
+
+		var ogmCard = new CardPageBuildItem();
+		var entities = entitiesBuildItem.getValue()
+			.stream().map(e -> new EntityDescription(e.getPackageName(), e.getSimpleName())).toList();
+		if (!entities.isEmpty()) {
+			ogmCard.addBuildTimeData("entities", entities);
+			ogmCard.addPage(Page.tableDataPageBuilder("Entities")
+				.showColumn("packageName")
+				.showColumn("simpleName")
+				.buildTimeDataKey("entities")
+				.icon("font-awesome-solid:egg")
+				.staticLabel(String.valueOf(entities.size()))
+			);
+		}
+
+		return ogmCard;
 	}
 }

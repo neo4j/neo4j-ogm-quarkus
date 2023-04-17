@@ -24,7 +24,7 @@ import org.neo4j.ogm.quarkus.test.ignored.SomeOtherClass;
 import org.neo4j.ogm.quarkus.test.domain.SomeClass;
 import io.quarkus.test.QuarkusUnitTest;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;

@@ -98,14 +98,20 @@ public class Neo4jOgmProcessor {
 	@BuildStep
 	ReflectiveClassBuildItem registerAnnotatedClassesForReflection(EntitiesBuildItem entitiesBuildItem) {
 
-		return new ReflectiveClassBuildItem(true, true, true, entitiesBuildItem.getValue().toArray(new Class<?>[0]));
+		return ReflectiveClassBuildItem.builder(entitiesBuildItem.getValue().toArray(new Class<?>[0]))
+			.constructors()
+			.methods()
+			.fields()
+			.build();
 	}
 
 	@BuildStep
 	ReflectiveClassBuildItem registerNativeTypes() throws ClassNotFoundException {
 
 		var typeSystem = Class.forName("org.neo4j.ogm.drivers.bolt.types.BoltNativeTypes", false, Thread.currentThread().getContextClassLoader());
-		return new ReflectiveClassBuildItem(true, false, false, typeSystem);
+		return ReflectiveClassBuildItem.builder(typeSystem)
+			.constructors()
+			.build();
 	}
 
 	@BuildStep

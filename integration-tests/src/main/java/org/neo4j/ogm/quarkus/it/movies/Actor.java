@@ -17,8 +17,8 @@ package org.neo4j.ogm.quarkus.it.movies;
 
 import java.util.List;
 
-import javax.json.bind.annotation.JsonbProperty;
-import javax.json.bind.annotation.JsonbTransient;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.json.bind.annotation.JsonbTransient;
 
 import org.neo4j.ogm.annotation.EndNode;
 import org.neo4j.ogm.annotation.GeneratedValue;
