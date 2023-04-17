@@ -30,7 +30,7 @@ beans like this:
 ----
 import java.util.Collection;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import org.neo4j.ogm.session.SessionFactory;
 

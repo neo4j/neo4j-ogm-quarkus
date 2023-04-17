@@ -15,7 +15,7 @@
  */
 package org.neo4j.ogm.quarkus.it.movies;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import org.neo4j.ogm.session.SessionFactory;
 

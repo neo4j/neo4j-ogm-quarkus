@@ -17,6 +17,10 @@ package org.neo4j.ogm.quarkus.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.IOException;
+
+import org.graalvm.polyglot.Context;
+import org.graalvm.polyglot.Source;
 import org.neo4j.ogm.quarkus.test.domain.SomeClass;
 import org.neo4j.ogm.quarkus.test.ignored.SomeOtherClass;
 import io.quarkus.test.QuarkusDevModeTest;
@@ -36,26 +40,45 @@ public class Neo4jOgmDevModeIT {
 			.addClass(SomeClass.class)
 			.addClass(SomeOtherClass.class)
 		);
-	private static final String DEV_TOOLS_ENDPOINT = "/q/dev/org.neo4j.neo4j-ogm-quarkus/entities";
+	private static final String DEV_TOOLS_ENDPOINT = "/q/dev-ui/org.neo4j.neo4j-ogm-quarkus/entities";
+	private static final String DATA_ENDPOINT = "/q/dev-ui/org.neo4j.neo4j-ogm-quarkus-data.js";
 
 	@Test
-	public void listOfDomainClassesShouldBeAvailable() {
+	public void listOfDomainClassesShouldBeAvailable() throws IOException {
 
-		var response = RestAssured
+		RestAssured
 			.given()
 			.when().get(DEV_TOOLS_ENDPOINT)
+			.then().statusCode(200);
+
+		var data = RestAssured
+			.given()
+			.when().get(DATA_ENDPOINT)
 			.then().statusCode(200)
-			.extract().response();
+			.extract().response().body().asString();
 
-		var base = "html.body.div.table.tbody.";
-		var p = response.getBody().htmlPath().getString(base + "tr[0].td[0]");
-		var c = response.getBody().htmlPath().getString(base + "tr[0].td[1]");
-		assertEquals(SomeClass.class.getPackageName(), p);
-		assertEquals(SomeClass.class.getSimpleName(), c);
+		try (var context = Context.newBuilder("js")
+			.allowExperimentalOptions(true)
+			.option("engine.WarnInterpreterOnly", "false")
+			.option("js.esm-eval-returns-exports", "true")
+			.build()
+		) {
 
-		p = response.getBody().htmlPath().getString(base + "tr[1].td[0]");
-		c = response.getBody().htmlPath().getString(base + "tr[1].td[1]");
-		assertEquals(SomeOtherClass.class.getPackageName(), p);
-		assertEquals(SomeOtherClass.class.getSimpleName(), c);
+			var result = context.eval(Source.newBuilder("js", data, "data.js")
+				.mimeType("application/javascript+module")
+				.build());
+			var entities = result.getMember("entities");
+			assertEquals(2, entities.getArraySize());
+
+			var p = entities.getArrayElement(0).getMember("packageName").asString();
+			var c = entities.getArrayElement(0).getMember("simpleName").asString();
+			assertEquals(SomeClass.class.getPackageName(), p);
+			assertEquals(SomeClass.class.getSimpleName(), c);
+
+			p = entities.getArrayElement(1).getMember("packageName").asString();
+			c = entities.getArrayElement(1).getMember("simpleName").asString();
+			assertEquals(SomeOtherClass.class.getPackageName(), p);
+			assertEquals(SomeOtherClass.class.getSimpleName(), c);
+		}
 	}
 }
