@@ -161,10 +161,17 @@ public class Neo4jOgmProcessor {
 		ShutdownContextBuildItem shutdownContext,
 		BuildProducer<SyntheticBeanBuildItem> syntheticBeans,
 		Neo4jOgmProperties ogmProperties,
-		EntitiesBuildItem allClasses) {
+		Neo4jOgmBuiltTimeProperties buildTimeProperties,
+		EntitiesBuildItem allClasses
+	) {
 
 		var allPackages = allClasses.getValue().stream().map(Class::getPackageName)
 			.distinct().toArray(String[]::new);
+
+		if (allPackages.length == 0 && buildTimeProperties.basePackages.isPresent()) {
+			allPackages = buildTimeProperties.basePackages.get().toArray(new String[0]);
+		}
+
 		var sessionFactoryRuntimeValue = recorder
 			.initializeSessionFactory(driverBuildItem.getValue(), shutdownContext, ogmProperties, allPackages);
 
