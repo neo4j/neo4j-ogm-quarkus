@@ -51,7 +51,7 @@
 	</scm>
 
 	<properties>
-		<checkstyle.version>10.10.0</checkstyle.version>
+		<checkstyle.version>10.12.1</checkstyle.version>
 		<docker-maven-plugin.version>0.43.0</docker-maven-plugin.version>
 		<exec-maven-plugin.version>3.1.0</exec-maven-plugin.version>
 		<graalvm.version>22.3.2</graalvm.version>
