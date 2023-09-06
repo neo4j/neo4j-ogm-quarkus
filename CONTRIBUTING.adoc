@@ -14,28 +14,31 @@ member, sign up!
 We love our community and wouldn't be where we are without you. Please remember:
 Many things are contributions, among them issues, code, documentation and examples.
 
+If you'd like to open a pull-request, please be aware that we have to ask you to sign the https://neo4j.com/developer/cla/[Neo4j CLA] before we are able to merge any code contributions.
+If you have questions about that, please let us know in the PR.
+
 == Building and compiling Neo4j-OGM Quarkus
 
-You need Maven and JDK11+. To run all tests, a working Docker installation is required.
+You need Maven and JDK17+. To run all tests, a working Docker installation is required.
 
 Build with
 
-[source,console,subs="verbatim,attributes"]
+[source,bash,subs="verbatim,attributes"]
 [[build-default-bash]]
 .Clean and verify the project
 ----
-$ ./mvnw clean verify
+./mvnw clean verify
 ----
 
 === Fast build
 
 NOTE: This is useful if you want to just have an install of a snapshot version. No tests are run, no verification is done.
 
-[source,console,subs="verbatim,attributes"]
+[source,bash,subs="verbatim,attributes"]
 [[build-fast-bash]]
 .Fast build (only compiling and producing packages)
 ----
-$ ./mvnw -Dfast package
+./mvnw -Dfast package
 ----
 
 === Releasing (Only relevant for the current maintainers)
