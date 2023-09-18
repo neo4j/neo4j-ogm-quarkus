@@ -15,21 +15,15 @@
  */
 package org.neo4j.ogm.quarkus.runtime;
 
+import io.quarkus.neo4j.runtime.Neo4jConfiguration;
 import io.quarkus.runtime.RuntimeValue;
 import io.quarkus.runtime.ShutdownContext;
 import io.quarkus.runtime.annotations.Recorder;
 
-import java.util.function.BiFunction;
-import java.util.function.Function;
-
 import org.neo4j.driver.Driver;
 import org.neo4j.ogm.config.Configuration;
-import org.neo4j.ogm.driver.AbstractConfigurableDriver;
 import org.neo4j.ogm.drivers.bolt.driver.BoltDriver;
-import org.neo4j.ogm.request.Request;
 import org.neo4j.ogm.session.SessionFactory;
-import org.neo4j.ogm.transaction.Transaction;
-import org.neo4j.ogm.transaction.TransactionManager;
 
 /**
  * @author Michael J. Simons
@@ -49,9 +43,12 @@ public class Neo4jOgmRecorder {
 	public RuntimeValue<SessionFactory> initializeSessionFactory(
 		RuntimeValue<Driver> driverRuntimeValue,
 		ShutdownContext shutdownContext,
+		Neo4jConfiguration neo4jConfiguration,
 		Neo4jOgmProperties ogmProperties, String[] allPackages) {
 
-		var builder = new Configuration.Builder();
+		var builder = new Configuration.Builder()
+			// Actually not needed for the driver to work, but required for the config not to stumble upon null
+			.uri(neo4jConfiguration.uri);
 
 		ogmProperties.database.ifPresent(builder::database);
 		if (ogmProperties.useNativeTypes) {
@@ -76,26 +73,12 @@ public class Neo4jOgmRecorder {
 	 * @return an OGM driver.
 	 */
 	private org.neo4j.ogm.driver.Driver createConfigurableDriver(RuntimeValue<Driver> driverRuntimeValue) {
-		var delegate = new BoltDriver(driverRuntimeValue.getValue());
-		return new AbstractConfigurableDriver() {
-			@Override
-			protected String getTypeSystemName() {
-				return "org.neo4j.ogm.drivers.bolt.types.BoltNativeTypes";
-			}
+		return new BoltDriver(driverRuntimeValue.getValue()) {
+
 
 			@Override
-			public Function<TransactionManager, BiFunction<Transaction.Type, Iterable<String>, Transaction>> getTransactionFactorySupplier() {
-				return delegate.getTransactionFactorySupplier();
-			}
-
-			@Override
-			public void close() {
-				delegate.close();
-			}
-
-			@Override
-			public Request request(Transaction transaction) {
-				return delegate.request(transaction);
+			public synchronized void close() {
+				// We must prevent the bolt driver from closing the driver bean
 			}
 		};
 	}
