@@ -15,45 +15,15 @@
  */
 package org.neo4j.ogm.quarkus.deployment;
 
-import org.neo4j.ogm.quarkus.runtime.Neo4jOgmDevConsoleRecorder;
-
 import io.quarkus.deployment.IsDevelopment;
 import io.quarkus.deployment.annotations.BuildStep;
-import io.quarkus.deployment.annotations.ExecutionTime;
-import io.quarkus.deployment.annotations.Record;
-import io.quarkus.deployment.pkg.builditem.CurateOutcomeBuildItem;
-import io.quarkus.devconsole.spi.DevConsoleRuntimeTemplateInfoBuildItem;
 import io.quarkus.devui.spi.page.CardPageBuildItem;
 import io.quarkus.devui.spi.page.Page;
-
-import java.util.ArrayList;
 
 /**
  * @author Michael J. Simons
  */
 public class Neo4jOgmDevConsoleProcessor {
-
-	/**
-	 * Records the list of domain classes into the info space.
-	 *
-	 * @param entitiesBuildItem      The build item containing the annotated OGM classes
-	 * @param curateOutcomeBuildItem The curated build item producer
-	 * @param recorder               Recorder for the supplier
-	 * @return A new template item
-	 */
-	@BuildStep(onlyIf = IsDevelopment.class)
-	@Record(ExecutionTime.RUNTIME_INIT)
-	@SuppressWarnings("unused")
-	DevConsoleRuntimeTemplateInfoBuildItem addAnnotatedClasses(
-		EntitiesBuildItem entitiesBuildItem,
-		CurateOutcomeBuildItem curateOutcomeBuildItem,
-		Neo4jOgmDevConsoleRecorder recorder) {
-
-		var supplier = recorder.recordEntities(new ArrayList<>(entitiesBuildItem.getValue()));
-		return new DevConsoleRuntimeTemplateInfoBuildItem("entities",
-			supplier, this.getClass(),
-			curateOutcomeBuildItem);
-	}
 
 	/**
 	 * A record to serialize the entities for {@link #createOgmCard(EntitiesBuildItem)} properly.
