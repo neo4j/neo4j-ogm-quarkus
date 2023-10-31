@@ -21,7 +21,6 @@ import java.io.IOException;
 
 import org.graalvm.polyglot.Context;
 import org.graalvm.polyglot.Source;
-import org.graalvm.polyglot.io.IOAccess;
 import org.neo4j.ogm.quarkus.test.domain.SomeClass;
 import org.neo4j.ogm.quarkus.test.ignored.SomeOtherClass;
 import io.quarkus.test.QuarkusDevModeTest;
@@ -60,7 +59,6 @@ public class Neo4jOgmDevModeIT {
 
 		try (var context = Context.newBuilder("js")
 			.allowExperimentalOptions(true)
-			.allowIO(IOAccess.ALL)
 			.option("engine.WarnInterpreterOnly", "false")
 			.option("js.esm-eval-returns-exports", "true")
 			.build()
