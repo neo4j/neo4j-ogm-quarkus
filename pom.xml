@@ -161,24 +161,6 @@
 							<arg>-parameters</arg>
 						</compilerArgs>
 					</configuration>
-					<executions>
-						<execution>
-							<id>default-compile</id>
-							<configuration>
-								<forceLegacyJavacApi>true</forceLegacyJavacApi>
-								<compilerArgs>
-									<arg>-Xlint:all,-options,-path,-processing,-classfile</arg>
-									<arg>-parameters</arg>
-									<!--
-										Add as a 2nd execution, as the option below always issues a warning, which cannot be suppressed by -processing.
-										Migration to @ConfigMapping does not work with properties that have a non `quarkus` prefix, see
-										https://github.com/orgs/quarkiverse/discussions/228#discussioncomment-10452027
-										-->
-									<arg>-AlegacyConfigRoot=true</arg>
-								</compilerArgs>
-							</configuration>
-						</execution>
-					</executions>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>

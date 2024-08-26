@@ -15,9 +15,9 @@
  */
 package org.neo4j.ogm.quarkus.runtime;
 
-import io.quarkus.runtime.annotations.ConfigItem;
 import io.quarkus.runtime.annotations.ConfigPhase;
 import io.quarkus.runtime.annotations.ConfigRoot;
+import io.smallrye.config.ConfigMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,14 +27,15 @@ import java.util.Optional;
  *
  * @author Michael J. Simons
  */
-@ConfigRoot(prefix = "org.neo4j", name = "ogm", phase = ConfigPhase.BUILD_TIME)
-public class Neo4jOgmBuiltTimeProperties {
+@ConfigMapping(prefix = "org.neo4j.ogm")
+@ConfigRoot(phase = ConfigPhase.BUILD_TIME)
+public interface Neo4jOgmBuiltTimeProperties {
 
 	/**
 	 * An optional list of packages to scan. If empty, all classes annotated with
 	 * {@link org.neo4j.ogm.annotation.NodeEntity @NodeEntity}
 	 * or {@link org.neo4j.ogm.annotation.RelationshipEntity @RelationshipEntity} will be added to the index.
+	 * @return the list of packages to scan
 	 */
-	@ConfigItem
-	public Optional<List<String>> basePackages;
+	Optional<List<String>> basePackages();
 }
