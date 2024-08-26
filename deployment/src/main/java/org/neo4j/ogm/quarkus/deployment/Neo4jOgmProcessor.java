@@ -69,7 +69,7 @@ public class Neo4jOgmProcessor {
 		var classes = new TreeSet<Class<?>>(Comparator.comparing(Class::getName));
 		var ccl = Thread.currentThread().getContextClassLoader();
 
-		Predicate<DotName> packageFilter = buildTimeProperties.basePackages
+		Predicate<DotName> packageFilter = buildTimeProperties.basePackages()
 			.map(packages -> (Predicate<DotName>) (DotName n) -> packages.contains(n.packagePrefix()))
 			.orElseGet(() -> (DotName n) -> true);
 
@@ -170,8 +170,8 @@ public class Neo4jOgmProcessor {
 		var allPackages = allClasses.getValue().stream().map(Class::getPackageName)
 			.distinct().toArray(String[]::new);
 
-		if (allPackages.length == 0 && buildTimeProperties.basePackages.isPresent()) {
-			allPackages = buildTimeProperties.basePackages.get().toArray(new String[0]);
+		if (allPackages.length == 0 && buildTimeProperties.basePackages().isPresent()) {
+			allPackages = buildTimeProperties.basePackages().get().toArray(new String[0]);
 		}
 
 		var sessionFactoryRuntimeValue = recorder

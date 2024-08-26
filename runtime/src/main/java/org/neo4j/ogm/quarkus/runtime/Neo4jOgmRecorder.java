@@ -50,11 +50,11 @@ public class Neo4jOgmRecorder {
 			// Actually not needed for the driver to work, but required for the config not to stumble upon null
 			.uri(neo4jConfiguration.uri);
 
-		ogmProperties.database.ifPresent(builder::database);
-		if (ogmProperties.useNativeTypes) {
+		ogmProperties.database().ifPresent(builder::database);
+		if (ogmProperties.useNativeTypes()) {
 			builder.useNativeTypes();
 		}
-		if (ogmProperties.useStrictQuerying) {
+		if (ogmProperties.useStrictQuerying()) {
 			builder.strictQuerying();
 		}
 		builder.withBasePackages(allPackages);

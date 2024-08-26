@@ -15,9 +15,10 @@
  */
 package org.neo4j.ogm.quarkus.runtime;
 
-import io.quarkus.runtime.annotations.ConfigItem;
 import io.quarkus.runtime.annotations.ConfigPhase;
 import io.quarkus.runtime.annotations.ConfigRoot;
+import io.smallrye.config.ConfigMapping;
+import io.smallrye.config.WithDefault;
 
 import java.util.Optional;
 
@@ -26,24 +27,24 @@ import java.util.Optional;
  *
  * @author Michael J. Simons
  */
-@ConfigRoot(prefix = "org.neo4j", name = "ogm", phase = ConfigPhase.RUN_TIME)
-public class Neo4jOgmProperties {
+@ConfigMapping(prefix = "quarkus.neo4j.ogm")
+@ConfigRoot(phase = ConfigPhase.RUN_TIME)
+public interface Neo4jOgmProperties {
 
 	/**
-	 * Should Neo4j native types be used for dates, times and similar?
+	 * {@return whether Neo4j should use native types be used for dates, times and similar}
 	 */
-	@ConfigItem(defaultValue = "false")
-	public boolean useNativeTypes;
+	@WithDefault("false")
+	boolean useNativeTypes();
 
 	/**
-	 * This flag instructs OGM to use all static labels when querying domain objects.
+	 * {@return a flag that instructs OGM to use all static labels when querying domain objects}
 	 */
-	@ConfigItem(defaultValue = "false")
-	public boolean useStrictQuerying;
+	@WithDefault("false")
+	boolean useStrictQuerying();
 
 	/**
-	 * The database that should be used (Neo4j EE 4.0+ only). Leave empty for using the default database.
+	 * {@return the database that should be used (Neo4j EE 4.0+ only), Leave empty for using the default database}
 	 */
-	@ConfigItem
-	public Optional<String> database;
+	Optional<String> database();
 }
