@@ -55,7 +55,7 @@
 		<docker-maven-plugin.version>0.45.0</docker-maven-plugin.version>
 		<exec-maven-plugin.version>3.4.1</exec-maven-plugin.version>
 		<graalvm.version>23.0.5</graalvm.version>
-		<java-module-name />
+		<java-module-name/>
 		<java.version>17</java.version>
 		<junit.jupiter.version>5.8.2</junit.jupiter.version>
 		<maven-checkstyle-plugin.version>3.4.0</maven-checkstyle-plugin.version>
@@ -153,7 +153,7 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>${maven-compiler-plugin.version}</version>
 					<configuration>
-						<forceJavacCompilerUse>true</forceJavacCompilerUse>
+						<forceLegacyJavacApi>true</forceLegacyJavacApi>
 						<compilerArgs>
 							<arg>-Xlint:all,-options,-path,-processing,-classfile</arg>
 							<!-- -classfile due to some weird stuff happening in testCompile. -->
@@ -161,6 +161,24 @@
 							<arg>-parameters</arg>
 						</compilerArgs>
 					</configuration>
+					<executions>
+						<execution>
+							<id>default-compile</id>
+							<configuration>
+								<forceLegacyJavacApi>true</forceLegacyJavacApi>
+								<compilerArgs>
+									<arg>-Xlint:all,-options,-path,-processing,-classfile</arg>
+									<arg>-parameters</arg>
+									<!--
+										Add as a 2nd execution, as the option below always issues a warning, which cannot be suppressed by -processing.
+										Migration to @ConfigMapping does not work with properties that have a non `quarkus` prefix, see
+										https://github.com/orgs/quarkiverse/discussions/228#discussioncomment-10452027
+										-->
+									<arg>-AlegacyConfigRoot=true</arg>
+								</compilerArgs>
+							</configuration>
+						</execution>
+					</executions>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -204,7 +222,8 @@
 						<configLocation>etc/checkstyle/config.xml</configLocation>
 						<suppressionsLocation>etc/checkstyle/suppressions.xml</suppressionsLocation>
 						<headerLocation>etc/checkstyle/java-header.txt</headerLocation>
-						<encoding>${project.build.sourceEncoding}</encoding>
+						<inputEncoding>${project.build.sourceEncoding}</inputEncoding>
+						<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
 						<consoleOutput>true</consoleOutput>
 						<failsOnError>true</failsOnError>
 						<includeTestSourceDirectory>true</includeTestSourceDirectory>
@@ -299,7 +318,7 @@
 								<requireJavaVersion>
 									<version>${java.version}</version>
 								</requireJavaVersion>
-								<DependencyConvergence />
+								<DependencyConvergence/>
 								<requireMavenVersion>
 									<version>${maven.version}</version>
 								</requireMavenVersion>
