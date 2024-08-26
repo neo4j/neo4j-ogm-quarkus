@@ -19,14 +19,16 @@ import io.smallrye.config.SmallRyeConfigBuilder;
 import io.smallrye.config.SmallRyeConfigBuilderCustomizer;
 
 /**
- * Fix things.
+ * Config customizer to ignore validation of unmapped properties between build-time and runtime.
+ *
  * @author Michael J. Simons
+ * @see Neo4jOgmBuiltTimeProperties
+ * @see Neo4jOgmProperties
  */
 public class CustomConfigBuilder implements SmallRyeConfigBuilderCustomizer {
 
 	@Override
 	public void configBuilder(final SmallRyeConfigBuilder builder) {
-
 		builder.withMappingIgnore("org.neo4j.ogm.**");
 	}
 }
