@@ -27,7 +27,7 @@ import java.util.Optional;
  *
  * @author Michael J. Simons
  */
-@ConfigMapping(prefix = "quarkus.neo4j.ogm")
+@ConfigMapping(prefix = "org.neo4j.ogm")
 @ConfigRoot(phase = ConfigPhase.RUN_TIME)
 public interface Neo4jOgmProperties {
 
