@@ -15,6 +15,7 @@
  */
 package org.neo4j.ogm.quarkus.runtime;
 
+import io.quarkus.runtime.annotations.StaticInitSafe;
 import io.smallrye.config.SmallRyeConfigBuilder;
 import io.smallrye.config.SmallRyeConfigBuilderCustomizer;
 
@@ -26,6 +27,7 @@ import io.smallrye.config.SmallRyeConfigBuilderCustomizer;
  * @see Neo4jOgmBuiltTimeProperties
  * @see Neo4jOgmProperties
  */
+@StaticInitSafe
 public final class Neo4jOgmConfigCustomizer implements SmallRyeConfigBuilderCustomizer {
 
 	@Override

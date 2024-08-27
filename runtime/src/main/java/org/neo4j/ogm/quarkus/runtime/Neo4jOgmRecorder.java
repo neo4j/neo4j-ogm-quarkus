@@ -36,6 +36,7 @@ public class Neo4jOgmRecorder {
 	 *
 	 * @param driverRuntimeValue The required java driver
 	 * @param shutdownContext    Needed to close it
+	 * @param neo4jConfiguration The applicable configuration
 	 * @param ogmProperties      Runtime properties that can be configured
 	 * @param allPackages        the list of packages already discovered
 	 * @return A session factory

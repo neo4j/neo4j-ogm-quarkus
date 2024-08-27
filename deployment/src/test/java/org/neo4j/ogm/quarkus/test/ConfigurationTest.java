@@ -15,6 +15,7 @@
  */
 package org.neo4j.ogm.quarkus.test;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -65,5 +66,6 @@ class ConfigurationTest {
 		assertTrue(configuration.getUseNativeTypes());
 		assertTrue(configuration.getUseStrictQuerying());
 		assertEquals("aDatabase", configuration.getDatabase());
+		assertArrayEquals(new String[] {"org.neo4j.ogm.quarkus.test.domain"}, configuration.getBasePackages());
 	}
 }
