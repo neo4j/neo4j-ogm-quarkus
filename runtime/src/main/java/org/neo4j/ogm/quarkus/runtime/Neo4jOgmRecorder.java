@@ -49,7 +49,7 @@ public class Neo4jOgmRecorder {
 
 		var builder = new Configuration.Builder()
 			// Actually not needed for the driver to work, but required for the config not to stumble upon null
-			.uri(neo4jConfiguration.uri);
+			.uri(neo4jConfiguration.uri());
 
 		ogmProperties.database().ifPresent(builder::database);
 		if (ogmProperties.useNativeTypes()) {
