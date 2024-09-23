@@ -12,17 +12,6 @@
 	<properties>
 		<java-module-name>org.neo4j.ogm.quarkus.quarkus.deployment</java-module-name>
 	</properties>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.graalvm.js</groupId>
-				<artifactId>js</artifactId>
-				<version>${graalvm.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 
 	<dependencies>
 		<dependency>
@@ -63,7 +52,7 @@
 		<dependency>
 			<groupId>org.graalvm.js</groupId>
 			<artifactId>js-language</artifactId>
-			<version>24.1.0</version>
+			<version>${graalvm.version}</version>
 			<scope>test</scope>
 		</dependency>
 
