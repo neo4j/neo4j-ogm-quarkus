@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.neo4j</groupId>
 		<artifactId>neo4j-ogm-quarkus-parent</artifactId>
-		<version>3.10.0</version>
+		<version>3.10.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>neo4j-ogm-quarkus</artifactId>
 	<name>Neo4j-OGM (Quarkus)</name>
