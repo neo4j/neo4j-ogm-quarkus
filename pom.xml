@@ -76,7 +76,7 @@
 		<maven.compiler.parameters>true</maven.compiler.parameters>
 		<maven.compiler.release>${java.version}</maven.compiler.release>
 		<maven.version>3.8.6</maven.version>
-		<neo4j-java-driver.version>5.27.0</neo4j-java-driver.version>
+		<neo4j-java-driver.version>5.28.1</neo4j-java-driver.version>
 		<neo4j-migrations.version>2.15.2</neo4j-migrations.version>
 		<neo4j-ogm.version>4.0.15</neo4j-ogm.version>
 		<neo4j.image>neo4j:4.4</neo4j.image>
