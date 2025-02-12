@@ -23,4 +23,5 @@ jobs:
       - name: 'Create release'
         env:
           JRELEASER_GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_TOKEN }}
+          JRELEASER_SLACK_WEBHOOK: ${{ secrets.JRELEASER_SLACK_WEBHOOK }}
         run: ./mvnw --no-transfer-progress -Pjreleaser -pl :neo4j-ogm-quarkus-parent jreleaser:full-release
