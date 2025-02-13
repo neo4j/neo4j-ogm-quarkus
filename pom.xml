@@ -593,8 +593,6 @@
 									<webhooks>
 										<slack>
 											<active>RELEASE</active>
-											<messageProperty>msg</messageProperty>
-											<structuredMessage>true</structuredMessage>
 										</slack>
 									</webhooks>
 								</announce>
