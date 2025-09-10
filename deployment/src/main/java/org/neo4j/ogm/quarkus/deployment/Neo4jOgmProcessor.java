@@ -16,7 +16,6 @@
 package org.neo4j.ogm.quarkus.deployment;
 
 import org.neo4j.ogm.quarkus.runtime.Neo4jOgmBuiltTimeProperties;
-import org.neo4j.ogm.quarkus.runtime.Neo4jOgmProperties;
 import org.neo4j.ogm.quarkus.runtime.Neo4jOgmRecorder;
 import io.quarkus.arc.deployment.SyntheticBeanBuildItem;
 import io.quarkus.deployment.annotations.BuildProducer;
@@ -30,7 +29,6 @@ import io.quarkus.deployment.builditem.ShutdownContextBuildItem;
 import io.quarkus.deployment.builditem.nativeimage.NativeImageResourceBuildItem;
 import io.quarkus.deployment.builditem.nativeimage.ReflectiveClassBuildItem;
 import io.quarkus.neo4j.deployment.Neo4jDriverBuildItem;
-import io.quarkus.neo4j.runtime.Neo4jConfiguration;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -161,8 +159,6 @@ public class Neo4jOgmProcessor {
 		Neo4jDriverBuildItem driverBuildItem,
 		ShutdownContextBuildItem shutdownContext,
 		BuildProducer<SyntheticBeanBuildItem> syntheticBeans,
-		Neo4jConfiguration neo4jConfiguration,
-		Neo4jOgmProperties ogmProperties,
 		Neo4jOgmBuiltTimeProperties buildTimeProperties,
 		EntitiesBuildItem allClasses
 	) {
@@ -175,7 +171,7 @@ public class Neo4jOgmProcessor {
 		}
 
 		var sessionFactoryRuntimeValue = recorder
-			.initializeSessionFactory(driverBuildItem.getValue(), shutdownContext, neo4jConfiguration, ogmProperties, allPackages);
+			.initializeSessionFactory(driverBuildItem.getValue(), shutdownContext, allPackages);
 
 		var beanBuildItem = SyntheticBeanBuildItem.configure(SessionFactory.class)
 			.runtimeValue(sessionFactoryRuntimeValue)

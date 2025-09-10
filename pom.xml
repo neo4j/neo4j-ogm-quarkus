@@ -55,8 +55,9 @@
 		<docker-maven-plugin.version>0.46.0</docker-maven-plugin.version>
 		<exec-maven-plugin.version>3.5.1</exec-maven-plugin.version>
 		<graalvm.version>24.2.2</graalvm.version>
-		<java-module-name />
-		<java.version>17</java.version>
+		<java-module-name/>
+		<java.build.version>24</java.build.version>
+		<java.release.version>17</java.release.version>
 		<junit.jupiter.version>5.8.2</junit.jupiter.version>
 		<maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
 		<maven-clean-plugin.version>3.5.0</maven-clean-plugin.version>
@@ -74,7 +75,7 @@
 		<maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
 		<maven.compiler.debug>true</maven.compiler.debug>
 		<maven.compiler.parameters>true</maven.compiler.parameters>
-		<maven.compiler.release>${java.version}</maven.compiler.release>
+		<maven.compiler.release>${java.release.version}</maven.compiler.release>
 		<maven.version>3.8.6</maven.version>
 		<neo4j-java-driver.version>5.28.9</neo4j-java-driver.version>
 		<neo4j-migrations.version>2.18.2</neo4j-migrations.version>
@@ -82,8 +83,8 @@
 		<neo4j.image>neo4j:4.4</neo4j.image>
 		<nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<quarkus-neo4j.version>5.6.0</quarkus-neo4j.version>
-		<quarkus.version>3.24.4</quarkus.version>
+		<quarkus-neo4j.version>5.7.0</quarkus-neo4j.version>
+		<quarkus.version>3.26.2</quarkus.version>
 		<sortpom-maven-plugin.version>4.0.0</sortpom-maven-plugin.version>
 	</properties>
 
@@ -180,7 +181,7 @@
 						<quiet>true</quiet>
 						<detectOfflineLinks>false</detectOfflineLinks>
 						<detectJavaApiLink>true</detectJavaApiLink>
-						<release>${java.version}</release>
+						<release>${java.release.version}</release>
 						<javadocVersion>1.8</javadocVersion>
 						<tags>
 							<tag>
@@ -298,9 +299,9 @@
 						<configuration>
 							<rules>
 								<requireJavaVersion>
-									<version>${java.version}</version>
+									<version>${java.build.version}</version>
 								</requireJavaVersion>
-								<DependencyConvergence />
+								<DependencyConvergence/>
 								<requireMavenVersion>
 									<version>${maven.version}</version>
 								</requireMavenVersion>
@@ -329,6 +330,7 @@
 					<systemPropertyVariables>
 						<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
 					</systemPropertyVariables>
+					<argLine>--add-opens java.base/java.lang=ALL-UNNAMED --enable-native-access=ALL-UNNAMED</argLine>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -339,6 +341,15 @@
 					<systemPropertyVariables>
 						<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
 					</systemPropertyVariables>
+					<!-- Thank you, JBoss Threads for being not compatible with JDK 24 without additional things, and just make this happen in a minor version of Quarkus again...
+					     Works in unit testing (with the exception), breaks in integration testing
+					Exception in thread "executor-thread-1" java.lang.IllegalAccessError: module java.base does not open java.lang to unnamed module @59b32539; to use the thread-local-reset capability on Java 24 or later, use this JVM option: - -add-opens java.base/java.lang=ALL-UNNAMED
+						at org.jboss.threads.JDKSpecific$ThreadAccess.<clinit>(JDKSpecific.java:32)
+						at org.jboss.threads.ThreadLocalResettingRunnable.run(ThreadLocalResettingRunnable.java:13)
+						at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+						at java.base/java.lang.Thread.run(Thread.java:1447)
+						-->
+					<argLine>--add-opens java.base/java.lang=ALL-UNNAMED --enable-native-access=ALL-UNNAMED</argLine>
 				</configuration>
 				<executions>
 					<execution>
@@ -616,7 +627,6 @@
 				<checkstyle.skip>true</checkstyle.skip>
 				<docker.skip>true</docker.skip>
 				<invoker.skip>true</invoker.skip>
-				<jacoco.skip>true</jacoco.skip>
 				<jqassistant.skip>true</jqassistant.skip>
 				<maven.javadoc.skip>true</maven.javadoc.skip>
 				<pmd.skip>true</pmd.skip>
