@@ -40,8 +40,9 @@ public class Neo4jOgmDevModeIT {
 			.addClass(SomeClass.class)
 			.addClass(SomeOtherClass.class)
 		);
-	private static final String DEV_TOOLS_ENDPOINT = "/q/dev-ui/org.neo4j.neo4j-ogm-quarkus/entities";
-	private static final String DATA_ENDPOINT = "/q/dev-ui/org.neo4j.neo4j-ogm-quarkus-data.js";
+
+	private static final String DEV_TOOLS_ENDPOINT = "/q/dev-ui/neo4j-ogm-quarkus/entities";
+	private static final String DATA_ENDPOINT = "/q/dev-ui/neo4j-ogm-quarkus-data.js";
 
 	@Test
 	public void listOfDomainClassesShouldBeAvailable() throws IOException {

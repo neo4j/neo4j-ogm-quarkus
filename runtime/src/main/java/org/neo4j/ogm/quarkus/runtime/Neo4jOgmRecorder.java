@@ -31,21 +31,29 @@ import org.neo4j.ogm.session.SessionFactory;
 @Recorder
 public class Neo4jOgmRecorder {
 
+	private final RuntimeValue<Neo4jConfiguration> rtvNeo4jConfiguration;
+	private final RuntimeValue<Neo4jOgmProperties> rtvOgmProperties;
+
+	public Neo4jOgmRecorder(RuntimeValue<Neo4jConfiguration> neo4jConfiguration, RuntimeValue<Neo4jOgmProperties> ogmProperties) {
+		this.rtvNeo4jConfiguration = neo4jConfiguration;
+		this.rtvOgmProperties = ogmProperties;
+	}
+
 	/**
 	 * Initializes a custom Neo4j-OGM session factory
 	 *
 	 * @param driverRuntimeValue The required java driver
 	 * @param shutdownContext    Needed to close it
-	 * @param neo4jConfiguration The applicable configuration
-	 * @param ogmProperties      Runtime properties that can be configured
 	 * @param allPackages        the list of packages already discovered
 	 * @return A session factory
 	 */
 	public RuntimeValue<SessionFactory> initializeSessionFactory(
 		RuntimeValue<Driver> driverRuntimeValue,
 		ShutdownContext shutdownContext,
-		Neo4jConfiguration neo4jConfiguration,
-		Neo4jOgmProperties ogmProperties, String[] allPackages) {
+		String[] allPackages) {
+
+		var neo4jConfiguration = this.rtvNeo4jConfiguration.getValue();
+		var ogmProperties = this.rtvOgmProperties.getValue();
 
 		var builder = new Configuration.Builder()
 			// Actually not needed for the driver to work, but required for the config not to stumble upon null
