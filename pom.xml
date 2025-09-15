@@ -4,7 +4,7 @@
 
 	<groupId>org.neo4j</groupId>
 	<artifactId>neo4j-ogm-quarkus-parent</artifactId>
-	<version>3.16.1-SNAPSHOT</version>
+	<version>3.16.1</version>
 	<packaging>pom</packaging>
 
 	<name>Neo4j-OGM (Quarkus Parent)</name>
@@ -46,7 +46,7 @@
 	<scm>
 		<connection>scm:git:git@github.com:neo4j/neo4j-ogm-quarkus.git</connection>
 		<developerConnection>scm:git:git@github.com:neo4j/neo4j-ogm-quarkus.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>3.16.1</tag>
 		<url>https://github.com/neo4j/neo4j-ogm-quarkus</url>
 	</scm>
 
