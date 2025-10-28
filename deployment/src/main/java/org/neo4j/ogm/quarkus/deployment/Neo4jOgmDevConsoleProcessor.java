@@ -42,7 +42,7 @@ public class Neo4jOgmDevConsoleProcessor {
 		var entities = entitiesBuildItem.getValue()
 			.stream().map(e -> new EntityDescription(e.getPackageName(), e.getSimpleName())).toList();
 		if (!entities.isEmpty()) {
-			ogmCard.addBuildTimeData("entities", entities);
+			ogmCard.addBuildTimeData("entities", entities, "A list of Neo4j-OGM entities", true);
 			ogmCard.addPage(Page.tableDataPageBuilder("Entities")
 				.showColumn("packageName")
 				.showColumn("simpleName")

@@ -15,6 +15,9 @@
  */
 package org.neo4j.ogm.quarkus.deployment;
 
+import io.quarkus.deployment.IsLocalDevelopment;
+import io.quarkus.devui.spi.JsonRPCProvidersBuildItem;
+import org.neo4j.ogm.quarkus.runtime.Neo4jOgmTools;
 import org.neo4j.ogm.quarkus.runtime.Neo4jOgmBuiltTimeProperties;
 import org.neo4j.ogm.quarkus.runtime.Neo4jOgmRecorder;
 import io.quarkus.arc.deployment.SyntheticBeanBuildItem;
@@ -85,7 +88,7 @@ public class Neo4jOgmProcessor {
 	private Collection<Class<?>> load(Predicate<DotName> filter, ClassLoader classLoader, Collection<ClassInfo> candidates)
 		throws ClassNotFoundException {
 
-		var result  = new ArrayList<Class<?>>(candidates.size());
+		var result = new ArrayList<Class<?>>(candidates.size());
 		for (var classInfo : candidates) {
 			if (filter.test(classInfo.name())) {
 				result.add(classLoader.loadClass(classInfo.name().toString()));
@@ -151,6 +154,11 @@ public class Neo4jOgmProcessor {
 
 	static String packageAsIndexEntry(String p) {
 		return "META-INF/resources/" + p.replace(".", "/") + "/neo4j-ogm.index";
+	}
+
+	@BuildStep(onlyIf = IsLocalDevelopment.class)
+	JsonRPCProvidersBuildItem entityService() {
+		return new JsonRPCProvidersBuildItem(Neo4jOgmTools.class);
 	}
 
 	@BuildStep
