@@ -21,6 +21,7 @@ import io.quarkus.devui.spi.page.CardPageBuildItem;
 import io.quarkus.devui.spi.page.Page;
 
 /**
+ * Creates the necessary infrastructure so that OGM entities appear in the Quarkus DEV Ui.
  * @author Michael J. Simons
  */
 public class Neo4jOgmDevConsoleProcessor {

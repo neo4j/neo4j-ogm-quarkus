@@ -27,6 +27,12 @@ import java.util.function.Supplier;
 public class Neo4jOgmDevConsoleRecorder {
 
 	/**
+	 * Needed for the config framework infrastructure.
+	 */
+	public Neo4jOgmDevConsoleRecorder() {
+	}
+
+	/**
 	 * Creates a supplier for a list of classes
 	 *
 	 * @param entities The list of classes to be supplied

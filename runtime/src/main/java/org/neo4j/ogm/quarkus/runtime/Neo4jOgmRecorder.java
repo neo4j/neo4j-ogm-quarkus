@@ -26,6 +26,7 @@ import org.neo4j.ogm.drivers.bolt.driver.BoltDriver;
 import org.neo4j.ogm.session.SessionFactory;
 
 /**
+ * Runtime recorder for all things OGM.
  * @author Michael J. Simons
  */
 @Recorder

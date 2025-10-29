@@ -30,6 +30,12 @@ import io.smallrye.config.SmallRyeConfigBuilderCustomizer;
 @StaticInitSafe
 public final class Neo4jOgmConfigCustomizer implements SmallRyeConfigBuilderCustomizer {
 
+	/**
+	 * Needed for the config framework infrastructure.
+	 */
+	public Neo4jOgmConfigCustomizer() {
+	}
+
 	@Override
 	public void configBuilder(final SmallRyeConfigBuilder builder) {
 		builder.withMappingIgnore("org.neo4j.ogm.**");

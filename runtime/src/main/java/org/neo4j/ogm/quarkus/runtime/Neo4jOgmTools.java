@@ -37,6 +37,19 @@ public final class Neo4jOgmTools {
 	@Inject
 	SessionFactory sessionFactory;
 
+	/**
+	 * Default constructor needed for Jakarta based injection.
+	 */
+	public Neo4jOgmTools() {
+	}
+
+	/**
+	 * Finds OGM instances for the given label. Only a limited amount of entities is returned by default. That number can be configured.
+	 * @param label the label of the entity to find
+	 * @param limit the number of instances returned
+	 * @param offset the offset from which instances should be returned, can be {@literal null}
+	 * @return a list of JSON mappings created through OGMs ObjectMapper
+	 */
 	@JsonRpcDescription("Finds OGM instances for the given label. Only a limited amount of entities is returned by default. That number can be configured.")
 	public  List<Map<String, Object>> findAll(
 			@JsonRpcDescription("The label for which the OGM entity should be find. Must either be the label as present in the graph or the simple class name onto which the label is mapped.") String label,
