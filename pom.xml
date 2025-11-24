@@ -52,7 +52,7 @@
 
 	<properties>
 		<checkstyle.version>12.1.2</checkstyle.version>
-		<docker-maven-plugin.version>0.47.0</docker-maven-plugin.version>
+		<docker-maven-plugin.version>0.48.0</docker-maven-plugin.version>
 		<exec-maven-plugin.version>3.6.2</exec-maven-plugin.version>
 		<graalvm.version>25.0.1</graalvm.version>
 		<java-module-name />
