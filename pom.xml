@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright 2022-2025 the original author or authors.
+    Copyright 2022-2026 the original author or authors.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
 
-          https://www.apache.org/licenses/LICENSE-2.0
+         https://www.apache.org/licenses/LICENSE-2.0
 
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
@@ -72,10 +72,11 @@
 		<docker-maven-plugin.version>0.48.0</docker-maven-plugin.version>
 		<exec-maven-plugin.version>3.6.3</exec-maven-plugin.version>
 		<graalvm.version>25.0.1</graalvm.version>
-		<java-module-name />
+		<java-module-name/>
 		<java.build.version>25</java.build.version>
 		<java.release.version>17</java.release.version>
 		<junit.jupiter.version>5.8.2</junit.jupiter.version>
+		<license-maven-plugin.version>5.0.0</license-maven-plugin.version>
 		<maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
 		<maven-clean-plugin.version>3.5.0</maven-clean-plugin.version>
 		<maven-compiler-plugin.version>3.14.1</maven-compiler-plugin.version>
@@ -103,7 +104,6 @@
 		<quarkus-neo4j.version>6.1.1</quarkus-neo4j.version>
 		<quarkus.version>3.30.5</quarkus.version>
 		<sortpom-maven-plugin.version>4.0.0</sortpom-maven-plugin.version>
-		<license-maven-plugin.version>5.0.0</license-maven-plugin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -161,7 +161,7 @@
 							<licenseSet>
 								<header>${maven.multiModuleProjectDirectory}/etc/license.tpl</header>
 								<properties>
-									<year>2025</year>
+									<year>2026</year>
 								</properties>
 								<includes>
 									<include>**</include>
@@ -363,7 +363,7 @@
 								<requireJavaVersion>
 									<version>${java.build.version}</version>
 								</requireJavaVersion>
-								<DependencyConvergence />
+								<DependencyConvergence/>
 								<requireMavenVersion>
 									<version>${maven.version}</version>
 								</requireMavenVersion>
