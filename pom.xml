@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2022-2025 the original author or authors.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+          https://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -86,6 +103,7 @@
 		<quarkus-neo4j.version>6.1.1</quarkus-neo4j.version>
 		<quarkus.version>3.30.5</quarkus.version>
 		<sortpom-maven-plugin.version>4.0.0</sortpom-maven-plugin.version>
+		<license-maven-plugin.version>5.0.0</license-maven-plugin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -134,6 +152,37 @@
 		<pluginManagement>
 
 			<plugins>
+				<plugin>
+					<groupId>com.mycila</groupId>
+					<artifactId>license-maven-plugin</artifactId>
+					<version>${license-maven-plugin.version}</version>
+					<configuration>
+						<licenseSets>
+							<licenseSet>
+								<header>${maven.multiModuleProjectDirectory}/etc/license.tpl</header>
+								<properties>
+									<year>2025</year>
+								</properties>
+								<includes>
+									<include>**</include>
+								</includes>
+								<excludes>
+									<exclude>**/*.adoc</exclude>
+									<exclude>**/*.conf</exclude>
+									<exclude>**/*.csv</exclude>
+									<exclude>**/*.cypher</exclude>
+									<exclude>**/*.script</exclude>
+									<exclude>**/*.tpl</exclude>
+									<exclude>**/.env</exclude>
+									<exclude>**/.snyk</exclude>
+									<exclude>**/org.mockito.plugins.MockMaker</exclude>
+									<exclude>LICENSE.txt</exclude>
+									<exclude>**/README</exclude>
+								</excludes>
+							</licenseSet>
+						</licenseSets>
+					</configuration>
+				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-gpg-plugin</artifactId>
@@ -268,6 +317,19 @@
 			</plugins>
 		</pluginManagement>
 		<plugins>
+			<plugin>
+				<groupId>com.mycila</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>validate</id>
+						<goals>
+							<goal>check</goal>
+						</goals>
+						<phase>validate</phase>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>io.quarkus</groupId>
 				<artifactId>quarkus-maven-plugin</artifactId>
