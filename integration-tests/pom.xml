@@ -28,7 +28,7 @@
 	<description>Integration tests for the Quarkus integration of Neo4j-OGM.</description>
 	<properties>
 		<java-module-name>org.neo4j.ogm.quarkus.quarkus.tests</java-module-name>
-		<neo4j.password>secret</neo4j.password>
+		<neo4j.password>verysecret</neo4j.password>
 		<neo4j.username>neo4j</neo4j.username>
 	</properties>
 	<dependencies>
