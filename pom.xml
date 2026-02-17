@@ -101,7 +101,7 @@
 		<neo4j.image>neo4j:2025.11.2</neo4j.image>
 		<nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<quarkus-neo4j.version>6.3.0</quarkus-neo4j.version>
+		<quarkus-neo4j.version>6.3.1</quarkus-neo4j.version>
 		<quarkus.version>3.31.3</quarkus.version>
 		<sortpom-maven-plugin.version>4.0.0</sortpom-maven-plugin.version>
 	</properties>
