@@ -97,7 +97,7 @@
 		<maven.version>3.9.11</maven.version>
 		<neo4j-java-driver.version>6.0.2</neo4j-java-driver.version>
 		<neo4j-migrations.version>3.2.1</neo4j-migrations.version>
-		<neo4j-ogm.version>5.0.2</neo4j-ogm.version>
+		<neo4j-ogm.version>5.0.3</neo4j-ogm.version>
 		<neo4j.image>neo4j:2025.11.2</neo4j.image>
 		<nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
