@@ -20,9 +20,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import io.quarkus.test.QuarkusExtensionTest;
 import org.neo4j.ogm.quarkus.test.ignored.SomeOtherClass;
 import org.neo4j.ogm.quarkus.test.domain.SomeClass;
-import io.quarkus.test.QuarkusUnitTest;
 
 import jakarta.inject.Inject;
 
@@ -39,7 +39,7 @@ import org.neo4j.ogm.session.SessionFactory;
 class Neo4jOgmTest {
 
 	@RegisterExtension
-	static final QuarkusUnitTest unitTest = new QuarkusUnitTest()
+	static final QuarkusExtensionTest unitTest = new QuarkusExtensionTest()
 		.setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class)
 			.addClass(SomeClass.class)
 			.addClass(SomeOtherClass.class));

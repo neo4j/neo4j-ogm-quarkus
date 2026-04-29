@@ -72,7 +72,7 @@
 		<docker-maven-plugin.version>0.48.1</docker-maven-plugin.version>
 		<exec-maven-plugin.version>3.6.3</exec-maven-plugin.version>
 		<graalvm.version>25.0.3</graalvm.version>
-		<java-module-name />
+		<java-module-name/>
 		<java.build.version>25</java.build.version>
 		<java.release.version>17</java.release.version>
 		<junit.jupiter.version>5.8.2</junit.jupiter.version>
@@ -102,7 +102,7 @@
 		<nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<quarkus-neo4j.version>6.5.1</quarkus-neo4j.version>
-		<quarkus.version>3.34.5</quarkus.version>
+		<quarkus.version>3.35.0</quarkus.version>
 		<sortpom-maven-plugin.version>4.0.0</sortpom-maven-plugin.version>
 	</properties>
 
@@ -363,7 +363,7 @@
 								<requireJavaVersion>
 									<version>${java.build.version}</version>
 								</requireJavaVersion>
-								<DependencyConvergence />
+								<DependencyConvergence/>
 								<requireMavenVersion>
 									<version>${maven.version}</version>
 								</requireMavenVersion>
