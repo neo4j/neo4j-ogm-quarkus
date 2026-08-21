@@ -68,15 +68,15 @@
 	</scm>
 
 	<properties>
-		<checkstyle.version>13.7.0</checkstyle.version>
-		<docker-maven-plugin.version>0.48.1</docker-maven-plugin.version>
+		<checkstyle.version>13.10.0</checkstyle.version>
+		<docker-maven-plugin.version>0.49.0</docker-maven-plugin.version>
 		<exec-maven-plugin.version>3.6.3</exec-maven-plugin.version>
-		<graalvm.version>25.0.3</graalvm.version>
+		<graalvm.version>25.2.4</graalvm.version>
 		<java-module-name />
 		<java.build.version>25</java.build.version>
 		<java.release.version>17</java.release.version>
 		<junit.jupiter.version>5.8.2</junit.jupiter.version>
-		<license-maven-plugin.version>5.0.0</license-maven-plugin.version>
+		<license-maven-plugin.version>5.1.1</license-maven-plugin.version>
 		<maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
 		<maven-clean-plugin.version>3.5.0</maven-clean-plugin.version>
 		<maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
@@ -85,7 +85,7 @@
 		<maven-failsafe-plugin.version>3.5.6</maven-failsafe-plugin.version>
 		<maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
 		<maven-install-plugin.version>3.1.4</maven-install-plugin.version>
-		<maven-jar-plugin.version>3.5.0</maven-jar-plugin.version>
+		<maven-jar-plugin.version>3.5.1</maven-jar-plugin.version>
 		<maven-javadoc-plugin.version>3.12.0</maven-javadoc-plugin.version>
 		<maven-release-plugin.version>3.3.1</maven-release-plugin.version>
 		<maven-resources-plugin.version>3.5.0</maven-resources-plugin.version>
@@ -95,14 +95,14 @@
 		<maven.compiler.parameters>true</maven.compiler.parameters>
 		<maven.compiler.release>${java.release.version}</maven.compiler.release>
 		<maven.version>3.9.11</maven.version>
-		<neo4j-java-driver.version>6.2.0</neo4j-java-driver.version>
+		<neo4j-java-driver.version>6.2.1</neo4j-java-driver.version>
 		<neo4j-migrations.version>4.1.2</neo4j-migrations.version>
 		<neo4j-ogm.version>5.0.7</neo4j-ogm.version>
 		<neo4j.image>neo4j:2026.03.1</neo4j.image>
 		<nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<quarkus-neo4j.version>6.7.0</quarkus-neo4j.version>
-		<quarkus.version>3.37.0</quarkus.version>
+		<quarkus.version>3.38.2</quarkus.version>
 		<sortpom-maven-plugin.version>4.0.0</sortpom-maven-plugin.version>
 	</properties>
 
@@ -538,7 +538,7 @@
 					<plugin>
 						<groupId>org.jreleaser</groupId>
 						<artifactId>jreleaser-maven-plugin</artifactId>
-						<version>1.24.0</version>
+						<version>1.25.0</version>
 						<inherited>false</inherited>
 						<configuration>
 							<jreleaser>
